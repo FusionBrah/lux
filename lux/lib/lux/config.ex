@@ -118,6 +118,60 @@ defmodule Lux.Config do
     Application.fetch_env!(:lux, :accounts)[:hyperliquid_api_url]
   end
 
+  # Binance Configuration
+
+  @doc """
+  Gets the Binance API key from configuration.
+  Raises if the key is not configured.
+  """
+  @spec binance_api_key() :: api_key()
+  def binance_api_key do
+    get_required_key(:accounts, :binance_api_key)
+  end
+
+  @doc """
+  Gets the Binance API secret from configuration.
+  Raises if the secret is not configured.
+  """
+  @spec binance_api_secret() :: api_key()
+  def binance_api_secret do
+    get_required_key(:accounts, :binance_api_secret)
+  end
+
+  @doc """
+  Returns true if Binance testnet mode is enabled.
+  """
+  @spec binance_testnet?() :: boolean()
+  def binance_testnet? do
+    :lux
+    |> Application.fetch_env!(:accounts)
+    |> Keyword.get(:binance_testnet, false)
+  end
+
+  @doc """
+  Gets the Binance Spot API URL based on testnet configuration.
+  """
+  @spec binance_spot_url() :: String.t()
+  def binance_spot_url do
+    if binance_testnet?() do
+      "https://testnet.binance.vision"
+    else
+      "https://api.binance.com"
+    end
+  end
+
+  @doc """
+  Gets the Binance Futures API URL based on testnet configuration.
+  """
+  @spec binance_futures_url() :: String.t()
+  def binance_futures_url do
+    if binance_testnet?() do
+      "https://testnet.binancefuture.com"
+    else
+      "https://fapi.binance.com"
+    end
+  end
+
   @doc """
   Retrieves the wallet address
   """

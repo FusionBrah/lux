@@ -15,6 +15,8 @@ nltk = "^3.9.1"
 setuptools = "^75.8.2"
 hyperliquid-python-sdk = "^0.10.1"
 ckzg = "^2.0.1"
+binance-connector = "^3.5.0"
+binance-futures-connector = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"

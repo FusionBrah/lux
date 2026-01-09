@@ -41,7 +41,11 @@ if config_env() in [:dev, :test] do
     wallet_address: env!("WALLET_ADDRESS", :string!),
     hyperliquid_private_key: env!("HYPERLIQUID_PRIVATE_KEY", :string!),
     hyperliquid_address: env!("HYPERLIQUID_ADDRESS", :string!, required: false),
-    hyperliquid_api_url: env!("HYPERLIQUID_API_URL", :string!)
+    hyperliquid_api_url: env!("HYPERLIQUID_API_URL", :string!),
+    # Binance configuration
+    binance_api_key: env!("BINANCE_API_KEY", :string!, required: false),
+    binance_api_secret: env!("BINANCE_API_SECRET", :string!, required: false),
+    binance_testnet: env!("BINANCE_TESTNET", :boolean, false)
 
   config :ethers,
     default_signer: Ethers.Signer.Local,
